@@ -26,7 +26,7 @@ iteratively estimates the global affine transformation $A(x)$ and refines the lo
 
 
 # Installation
-Users need to create an environment and install SANTO by following procedures:
+Users need to create an environment and install GALA by following procedures:
 ```
 conda create -n gala_env python=3.12.9
 conda activate gala_env
