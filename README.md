@@ -13,9 +13,21 @@ A Unified Landmark-Free Framework for Coarse-to-Fine Spatial Alignment Across Re
 
 - **(c)** GALA applies broadly across diverse alignment tasks, including same-modality alignment at matched or mismatched resolutions (spot-to-spot, cell-to-cell, or cell-to-spot/spot-to-cell) and cross-modality alignment (e.g., transcriptomics-to-histology at different scales). It also supports both full and partial alignment.
 
+# Data Availability
+All preprocessed spatial transcriptomics datasets and corresponding alignment outputs generated in this study are publicly available on [Zenodo](https://doi.org/10.5281/zenodo.17576488).
+
+These resources include:
+- Preprocessed source and target datasets and corresponding scripts.
+- Alignment outputs produced by GALA for all experiments reported in the manuscript.
+- Scripts to reproduce analyses and generate figures.
+
+Original raw datasets are linked both in the main text of the manuscript and in the [tutorials](tutorials)￼ folder of this repository.
+
+Users can download the datasets and outputs to reproduce the analyses or apply GALA to their own datasets.
+
 # Tutorials
 - Spot-to-spot alignment of DLPFC data. (See [tutorial1](tutorials/tutorial1.ipynb))
-- Spot-to-spot alignment of DLPFC data (partial alignment). (See [tutorial3](tutorials/tutorial2.ipynb))
+- Spot-to-spot alignment of DLPFC data (partial alignment). (See [tutorial2](tutorials/tutorial2.ipynb))
 - Spot-to-spot alignment of MBSP data. (See [tutorial3](tutorials/tutorial3.ipynb))
 - Cell-to-cell alignment of mouse liver replicates. (See [tutorial4](tutorials/tutorial4.ipynb))
 - Cell-to-spot alignment of mouse brain coronal sections (partial alignment). (See [tutorial5](tutorials/tutorial5.ipynb))
@@ -28,6 +40,10 @@ Users need to create an environment and install GALA by following procedures:
 ```
 conda create -n gala_env python=3.12.9
 conda activate gala_env
+
+git clone https://github.com/TaoDing2/GALA-main.git
+cd GALA-main
+pip install -e .
 
 ```
 
