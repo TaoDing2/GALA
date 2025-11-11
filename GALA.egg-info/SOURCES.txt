@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+GALA/__int__.py
+GALA/gala.py
+GALA/utils.py
+GALA.egg-info/PKG-INFO
+GALA.egg-info/SOURCES.txt
+GALA.egg-info/dependency_links.txt
+GALA.egg-info/requires.txt
+GALA.egg-info/top_level.txt
