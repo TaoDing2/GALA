@@ -276,9 +276,9 @@ def transform_points_source_to_target(xv,v,A,pointsI):
     # tensor
     A = torch.as_tensor(A,device = v.device)
     if isinstance(pointsI,torch.Tensor):
-        pointsI = pointsI.to(device=v.device).clone()
+        pointsI = pointsI.to(device=v.device,dtype=A.dtype).clone()
     else:
-        pointsI = torch.tensor(pointsI,device = v.device)
+        pointsI = torch.tensor(pointsI,device = v.device,dtype=A.dtype)
         
     nt = v.shape[0]
     for t in range(nt):            
@@ -290,9 +290,9 @@ def transform_points_target_to_source(xv,v,A,pointsI):
     # tensor
     A = torch.as_tensor(A,device = v.device)
     if isinstance(pointsI,torch.Tensor):
-        pointsI = pointsI.to(device=v.device).clone()
+        pointsI = pointsI.to(device=v.device,dtype=A.dtype).clone()
     else:
-        pointsI = torch.tensor(pointsI,device = v.device)
+        pointsI = torch.tensor(pointsI,device = v.device,dtype=A.dtype)
         
     Ai = torch.linalg.inv(A)
     pointsI = (Ai[:2,:2]@pointsI.T + Ai[:2,-1][...,None]).T
@@ -799,7 +799,7 @@ def to_cpu(obj):
 ###
 ### Biological analysis using cossin similarity
 ###
-def plot_cossim(ada_source,ada_target,common_genes,gene_names_to_keep,ax,title,pixel_size = 30):
+def plot_cossim(ada_source,ada_target,common_genes,gene_names_to_keep,ax,title,pixel_size = 30,fs0 = 10):
     # 给每个 AnnData 加上 pixel 信息
     def assign_pixel(adata, coord_key,pixel_size= pixel_size):
         coords = adata.obsm[coord_key]
@@ -861,11 +861,11 @@ def plot_cossim(ada_source,ada_target,common_genes,gene_names_to_keep,ax,title,p
     merged['sim_bin'] = pd.cut(merged['cosine_similarity'], bins=bins)
     # 按 bin 聚合表达量
     grouped = merged.groupby('sim_bin')['total_expr'].sum().reset_index()
-    # 计算 bin 中心作为 y 位置（用于设置刻度）
-    bin_lefts = [interval.left for interval in grouped['sim_bin']]
+    # 使用右边界作为刻度
+    bin_rights = [interval.right for interval in grouped['sim_bin']]
     # 设置标签
-    yticks = bin_lefts
-    yticklabels = [str(round(tick, 1)) for tick in bin_lefts]
+    yticks = bin_rights
+    yticklabels = [str(round(tick, 1)) for tick in bin_rights]
 
     ###
     ### Plots
@@ -886,13 +886,13 @@ def plot_cossim(ada_source,ada_target,common_genes,gene_names_to_keep,ax,title,p
         merged[key]['raw_vals'].append(val)
 
     # 3. 画主图
-    ax.barh(y=bin_lefts, width=grouped['total_expr'], color='gray', height=0.1)
+    ax.barh(y=bin_rights, width=grouped['total_expr'], color='gray', height=0.1)
 
     # 添加均值线
     median_val = np.median(sim_df.iloc[:, 1])
     ax.axhline(y=median_val, color='red', linestyle='--', linewidth=1)
     ax.text(x=max(grouped['total_expr']) * 0.5, y=median_val,
-             s=f'Median: {median_val:.2f}', color='red', va='top', ha='right')
+             s=f'Median: {median_val:.2f}', color='red', va='top', ha='right',size = fs0)
     # 4. 遍历 merged 画标线
     for key, info in merged.items():
         genes = info['genes']
@@ -903,10 +903,8 @@ def plot_cossim(ada_source,ada_target,common_genes,gene_names_to_keep,ax,title,p
         ax.axhline(y=mean_sim, color='black', linestyle='--', linewidth=1)
         ax.text(x=max(grouped['total_expr']) * 1.1, y=mean_sim,
                  s=f'{label}: {mean_sim:.2f}',
-                 va='bottom', ha='right')
+                 va='bottom', ha='right',size = fs0,fontstyle='italic')
     # 美化图
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
     ax.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
 
     ax.set_ylabel("Cosine Similarity")

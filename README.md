@@ -4,7 +4,7 @@ A Unified Landmark-Free Framework for Coarse-to-Fine Spatial Alignment Across Re
 
 
 
-# Pipeline of GALA and its application scenarios
+# Overview of GALA and its application scenarios
 ![Pipeline of GALA and its application scenarios](./overview.jpg)
 
 -  **(a)** GALA takes as input a ***source*** dataset (to be aligned) and a ***target*** dataset, both multimodal and integrating spatial coordinates (`coords`), gene expression (`expr`), and histological images (`histo`). They differ in resolution: the source is at cellular/subcellular (cell-level) and the target at multicellular (spot-level) resolution. To enable joint processing, both datasets are rasterized into multi-channel tensors, $I \in \mathbb{R}^{c \times H_1 \times W_1}$ and $J \in \mathbb{R}^{c \times H_2 \times W_2}$, with $c = p + 2$ determined by input modalities.  The Coupled alignment process summarises the global affine transformation $A$ and jointly estimates the local diffeomorphic mapping $\phi^v$ with the probabilistic matching $P_M$, producing the final aligned output through iterative coupled optimisation.  The alignment of a representative informative gene is also shown. 
