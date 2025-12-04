@@ -36,14 +36,16 @@ Users can download the datasets and outputs to reproduce the analyses or apply G
 
 
 # Installation
-Users need to create an environment and install GALA by following procedures:
+Recommended to use Python 3.9 environment.
+
 ```
 conda create -n gala_env python=3.12.9
 conda activate gala_env
 
-git clone https://github.com/TaoDing2/GALA-main.git
-cd GALA-main
-pip install -e .
+
+git clone https://github.com/TaoDing2/GALA.git
+cd GALA
+pip install .
+
 
 ```
-
