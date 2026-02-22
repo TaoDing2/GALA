@@ -25,7 +25,41 @@ Original raw datasets are linked both in the main text of the manuscript and in 
 
 Users can download the datasets and outputs to reproduce the analyses or apply GALA to their own datasets.
 
-# Tutorials
+
+# Requirements
+- Python 3.12 is recommended
+- PyTorch 2.6+ with CUDA 12.4 (for GPU acceleration)
+- Other dependencies are listed in [pyproject.toml](./pyproject.toml)
+
+# Installation
+1. Create a Python Environment
+``` bash
+## Create a new conda environment
+conda create -n gala_env python=3.12.9
+conda activate gala_env
+```
+
+2. Clone and install GALA
+``` bash
+# Clone the repository
+git clone https://github.com/TaoDing2/GALA.git
+cd GALA
+
+# Install the package
+pip install .
+```
+**Note**: Alternatively, you can manually check dependencies in [pyproject.toml](./pyproject.toml).
+
+3. Import GALA
+To import GALA into your Python script, use:
+``` bash
+from GALA import gala, utils
+```
+
+
+# Usage and Tutorials
+To use GALA, please refer to our [tutorials](tutorials) folder, which contains example notebooks for different alignment scenarios:
+
 - Spot-to-spot alignment of DLPFC data. (See [tutorial1](tutorials/tutorial1.ipynb))
 - Spot-to-spot alignment of DLPFC data (partial alignment). (See [tutorial2](tutorials/tutorial2.ipynb))
 - Spot-to-spot alignment of MBSP data. (See [tutorial3](tutorials/tutorial3.ipynb))
@@ -33,19 +67,3 @@ Users can download the datasets and outputs to reproduce the analyses or apply G
 - Cell-to-spot alignment of mouse brain coronal sections (partial alignment). (See [tutorial5](tutorials/tutorial5.ipynb))
 - Transcriptomics-to-Histology alignment of human breast and lung cancers (partial alignment). (See [tutorial6](tutorials/tutorial6.ipynb))
 
-
-
-# Installation
-Recommended to use Python 3.9 environment.
-
-```
-conda create -n gala_env python=3.12.9
-conda activate gala_env
-
-
-git clone https://github.com/TaoDing2/GALA.git
-cd GALA
-pip install .
-
-
-```
