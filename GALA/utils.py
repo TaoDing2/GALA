@@ -889,10 +889,10 @@ def plot_cossim(ada_source,ada_target,common_genes,gene_names_to_keep,ax,title,p
     ax.barh(y=bin_rights, width=grouped['total_expr'], color='gray', height=0.1)
 
     # 添加均值线
-    median_val = np.median(sim_df.iloc[:, 1])
-    ax.axhline(y=median_val, color='red', linestyle='--', linewidth=1)
-    ax.text(x=max(grouped['total_expr']) * 0.5, y=median_val,
-             s=f'Median: {median_val:.2f}', color='red', va='top', ha='right',size = fs0)
+    mean_val = np.mean(sim_df.iloc[:, 1])
+    ax.axhline(y=mean_val, color='red', linestyle='--', linewidth=1)
+    ax.text(x=max(grouped['total_expr']) * 0.5, y=mean_val,
+             s=f'Mean: {mean_val:.3f}', color='red', va='top', ha='right',size = fs0)
     # 4. 遍历 merged 画标线
     for key, info in merged.items():
         genes = info['genes']
@@ -902,7 +902,7 @@ def plot_cossim(ada_source,ada_target,common_genes,gene_names_to_keep,ax,title,p
 
         ax.axhline(y=mean_sim, color='black', linestyle='--', linewidth=1)
         ax.text(x=max(grouped['total_expr']) * 1.1, y=mean_sim,
-                 s=f'{label}: {mean_sim:.2f}',
+                 s=f'{label}: {mean_sim:.3f}',
                  va='bottom', ha='right',size = fs0,fontstyle='italic')
     # 美化图
     ax.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
