@@ -14,7 +14,7 @@ A Unified Landmark-Free Framework for Coarse-to-Fine Spatial Alignment Across Re
 - **(c)** GALA applies broadly across diverse alignment tasks, including same-modality alignment at matched or mismatched resolutions (spot-to-spot, cell-to-cell, or cell-to-spot/spot-to-cell) and cross-modality alignment (e.g., transcriptomics-to-histology at different scales). It also supports both full and partial alignment.
 
 # Data Availability
-All preprocessed spatial transcriptomics datasets and corresponding alignment outputs generated in this study are publicly available on [Zenodo](https://zenodo.org/records/17576488).
+All preprocessed spatial transcriptomics datasets and corresponding alignment outputs generated in this study are publicly available on [Zenodo](https://zenodo.org/records/18803459).
 
 These resources include:
 - Preprocessed source and target datasets and corresponding scripts.
@@ -50,8 +50,7 @@ pip install .
 ```
 **Note**: Alternatively, you can manually check dependencies in [pyproject.toml](./pyproject.toml).
 
-3. Import GALA
-To import GALA into your Python script, use:
+3. Import GALA into your Python script, use:
 ``` bash
 from GALA import gala, utils
 ```
